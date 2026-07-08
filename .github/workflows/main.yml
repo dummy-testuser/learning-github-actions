@@ -10,119 +10,13 @@ jobs:
         run: ls -a
       - name: Print working directory
         run: pwd
-      - name: Create JS file
-        run: echo 'console.log("Hello from github actions machine")' > app.js
-      - name: Run NodeJS file
-        run: node app.js
+      - name: nginx version
+        run: nginx -v
+      - name: ngrok version
+        run: ngrok -v
 
   second-jon:
     runs-on: ubuntu-latest
     steps:
-      - name: System Information
-        run: |
-            echo "===== OS ====="
-            uname -a
-            cat /etc/os-release
-
-            echo
-            echo "===== Hostname ====="
-            hostname
-
-            echo
-            echo "===== Current User ====="
-            whoami
-            id
-
-            echo
-            echo "===== Current Directory ====="
-            pwd
-            ls -la
-
-            echo
-            echo "===== Environment Variables ====="
-            env | sort
-
-            echo
-            echo "===== CPU ====="
-            lscpu
-
-            echo
-            echo "===== Memory ====="
-            free -h
-
-            echo
-            echo "===== Disk ====="
-            df -h
-
-            echo
-            echo "===== Network Interfaces ====="
-            ip addr
-
-            echo
-            echo "===== Routing ====="
-            ip route
-
-            echo
-            echo "===== Running Processes ====="
-            ps aux
-
-            echo
-            echo "===== Installed Node ====="
-            node -v || true
-            npm -v || tru
-
-            echo
-            echo "===== Installed Git ====="
-            git --version
-
-            echo
-            echo "===== Git Config ====="
-            git config --list
-
-            echo
-            echo "===== Shell ====="
-            echo $SHELL
-
-            echo
-            echo "===== Kernel ====="
-            uname -r
-
-            echo
-            echo "===== Date ====="
-            date
-
-            echo
-            echo "===== Timezone ====="
-            timedatectl || true
-
-            echo
-            echo "===== Workspace ====="
-            echo $GITHUB_WORKSPACE
-            ls -la "$GITHUB_WORKSPACE"
-
-            echo
-            echo "===== GitHub Context ====="
-            echo "Repository: $GITHUB_REPOSITORY"
-            echo "Actor: $GITHUB_ACTOR"
-            echo "Ref: $GITHUB_REF"
-            echo "SHA: $GITHUB_SHA"
-            echo "Run ID: $GITHUB_RUN_ID"
-            echo "Run Number: $GITHUB_RUN_NUMBER"
-            echo "Workflow: $GITHUB_WORKFLOW"
-            echo "Event: $GITHUB_EVENT_NAME"
-
-            echo
-            echo "===== Disk Usage ====="
-            du -sh "$GITHUB_WORKSPACE"
-
-            echo
-            echo "===== Available Memory ====="
-            vmstat
-
-            echo
-            echo "===== Open Files Limit ====="
-            cat /proc/sys/fs/file-max
-
-            echo
-            echo "===== Load Average ====="
-            uptime
+        - name: Setup tmate session
+          uses: mxschmitt/action-tmate@v3
