@@ -9,14 +9,18 @@ jobs:
       - name: List all files
         run: ls -a
       - name: Print working directory
-        run: pwd
-      - name: nginx version
-        run: nginx -v
-      - name: ngrok version
-        run: ngrok -v
+        run: pwd 
 
   second-jon:
     runs-on: ubuntu-latest
     steps:
+        - name: Clone repository
+          run: git clone https://github.com/saifraja07/Custom-CICD-Server.git
+        - name: checkout to cloned repository
+          run: cd Custom-CICD-Server
+        - name: Install dependencies
+          run: npm i
+        - name: start server
+          run: node app.js
         - name: Setup tmate session
           uses: mxschmitt/action-tmate@v3
