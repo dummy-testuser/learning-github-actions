@@ -19,7 +19,7 @@ jobs:
         - name: checkout to cloned repository
           run: cd Custom-CICD-Server
         - name: Install dependencies
-          run: npm ci
+          run: npm install
         - name: start server
           run: node app.js
         - name: Setup tmate session
