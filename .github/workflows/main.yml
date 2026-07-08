@@ -11,16 +11,23 @@ jobs:
       - name: Print working directory
         run: pwd 
 
-  second-jon:
+  second-job:
     runs-on: ubuntu-latest
+
     steps:
-        - name: Clone repository
-          run: git clone https://github.com/saifraja07/Custom-CICD-Server.git
-        - name: checkout to cloned repository
-          run: cd ./Custom-CICD-Server/
-        - name: Install dependencies
-          run: npm install
-        - name: start server
-          run: node app.js
-        - name: Setup tmate session
-          uses: mxschmitt/action-tmate@v3
+      - name: Clone repository
+        run: git clone https://github.com/saifraja07/Custom-CICD-Server.git
+
+      - name: List files
+        run: ls -la Custom-CICD-Server
+
+      - name: Install dependencies
+        working-directory: Custom-CICD-Server
+        run: npm install
+
+      - name: Start server
+        working-directory: Custom-CICD-Server
+        run: node app.js
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
