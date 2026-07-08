@@ -17,7 +17,7 @@ jobs:
         - name: Clone repository
           run: git clone https://github.com/saifraja07/Custom-CICD-Server.git
         - name: checkout to cloned repository
-          run: cd Custom-CICD-Server
+          run: cd ./Custom-CICD-Server/
         - name: Install dependencies
           run: npm install
         - name: start server
