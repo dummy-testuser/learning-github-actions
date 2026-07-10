@@ -6,8 +6,13 @@ jobs:
     steps:
       - name: List all files
         run: ls -a
-      - name: Print Working Directory
+      - name: Checkout repository
         uses: actions/checkout@v4
       - name: List all files
         run: ls -a
-        
+      - run: node -v
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        # with:
+        #   node-version: 23
+      - run: node -v
