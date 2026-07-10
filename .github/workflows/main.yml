@@ -4,15 +4,4 @@ jobs:
   my-first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: List all files
-        run: ls -a
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: List all files
-        run: ls -a
-      - run: node -v
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - run: node -v
+      - run: echo "${{true}}"
