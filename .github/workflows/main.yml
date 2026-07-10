@@ -13,6 +13,6 @@ jobs:
       - run: node -v
       - name: Setup Node
         uses: actions/setup-node@v4
-        # with:
-        #   node-version: 23
+        with:
+          node-version: 24
       - run: node -v
