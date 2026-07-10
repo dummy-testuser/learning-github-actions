@@ -1,48 +1,20 @@
 name: My first workflow
 
-on: [push,workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:
-  server:
+  first-job:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Clone repository
-        run: git clone https://github.com/saifraja07/Custom-CICD-Server.git
+      - name: List all files
+        run: ls -a
+      - name: Print Working Directory
+        run: pwd
 
-      - name: Install dependencies
-        working-directory: Custom-CICD-Server
-        run: npm install
+  second-job:
+    runs-on: ubuntu-latest
+    needs: first-job
 
-      - name: Install ngrok
-        run: |
-          curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
-          | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
-
-          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
-          | sudo tee /etc/apt/sources.list.d/ngrok.list
-
-          sudo apt update
-          sudo apt install ngrok -y
-
-      - name: Configure ngrok
-        run: |
-          ngrok config add-authtoken 3FXocKIXQnwe0zExq2CGY8ROQxD_5wyutipnzxMBJ1jqo8q3K
-
-      - name: Start Node server
-        working-directory: Custom-CICD-Server
-        run: |
-          nohup node --watch app.js > server.log 2>&1 &
-          sleep 5
-
-      - name: Start ngrok
-        run: |
-          nohup ngrok http 5000 > ngrok.log 2>&1 &
-          sleep 5
-
-      - name: Show ngrok URL
-        run: |
-          curl http://127.0.0.1:4040/api/tunnels
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+    steps:
+      - run: node -v
+      - run: npm -v
