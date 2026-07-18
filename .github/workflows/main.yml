@@ -4,8 +4,5 @@ jobs:
   my-first-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{true}}"
-      - run: echo "${{ 5 > 3 }}"
-      - run: echo "${{ 7 > 3 && 2 > 1 }}"
-      - name: Print github context as JSON
-        run: echo "${{ toJson(github) }}"
+      - run: node --version
+      - run: aws --version
